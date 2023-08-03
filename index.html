@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <h1>QR Code Generator</h1>
+    <div class="input_container">
+      <input
+        class="primary_input"
+        type="url"
+        placeholder="Enter a url"
+        id="txt_url"
+      />
+      <button class="primary_button" type="submit" id="btn_submit">
+        Enter
+      </button>
+      <div id="loader" class="loader"></div>
+    </div>
+
+    <img src="" alt="qr_code" width="auto" height="200px" id="img_qrcode" />
+
+    <footer>
+      <span>2023 QR Code Generator. By Mohmed Rashwan</span>
+    </footer>
+
+    <script type="text/javascript">
+      
+      const txtUrl = document.getElementById("txt_url");
+      const btn = document.getElementById("btn_submit");
+      // const btnSave = document.getElementById("btn_save");   
+      const loader = document.getElementById("loader");
+      const qrImage = document.getElementById("img_qrcode");
+
+      // btnSave.addEventListener("click", async function() {
+      //   try {
+      //     let res = await fetch("http://127.0.0.1:4000/saveQRCode");
+
+      //     const data = await res.text();
+
+      //     console.log(data)
+          
+
+      //   } catch(err) {
+      //     console.log(err)
+      //   }
+      // });
+
+      
+      txtUrl.addEventListener("input", function() {
+        qrImage.style.display = "none";
+        qrImage.style.transition = "display 0.8s ease";
+      });
+
+      btn.addEventListener("click", async function (event) {
+        try {
+          event.preventDefault();
+          const url = txtUrl.value.trim();
+          const secured_url = "https://" + url;
+          console.log(secured_url)
+
+          if (url !== "") {
+            btn.style.display = "none";
+            loader.style.display = "block";
+            txtUrl.setAttribute("disabled", "");
+
+            setTimeout(async () => {
+              loader.style.display = "none";
+              btn.style.display = "block";
+              txtUrl.removeAttribute("disabled", "");
+
+              const response = await fetch(
+                "http://127.0.0.1:4000/generateQRCode",
+                {
+                  method: "POST",
+                  body: JSON.stringify({ url: url }),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+
+              
+              qrImage.src = URL.createObjectURL(await response.blob());
+              qrImage.style.display = "block";
+              txtUrl.value = "";
+            }, 5000);
+          } else {
+            alert("Please enter a url");
+            return;
+          }
+        } catch (err) {
+          console.log("Fetch error", err);
+        }
+      });
+    </script>
+  </body>
+</html>
