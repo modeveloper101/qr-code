@@ -45,7 +45,6 @@
           event.preventDefault();
           const url = txtUrl.value.trim();
           const secured_url = "https://" + url;
-          console.log(secured_url);
 
           if (url !== "") {
             btn.style.display = "none";
@@ -61,7 +60,7 @@
                 "http://127.0.0.1:4000/generateQRCode",
                 {
                   method: "POST",
-                  body: JSON.stringify({ url: url }),
+                  body: JSON.stringify({ url: secured_url }),
                   headers: {
                     "Content-Type": "application/json",
                   },

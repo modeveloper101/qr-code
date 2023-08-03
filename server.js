@@ -1,6 +1,5 @@
 const express = require("express");
 const { generateQRCode } = require("./qrCodeGenerator");
-const { saveQRCode } = require("./saveQRCode");
 const cors = require("cors");
 
 const app = express();
