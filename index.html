@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
+    <title>QR Code Generaator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
     <script src="main.js"></script>
@@ -30,29 +30,12 @@
     </footer>
 
     <script type="text/javascript">
-      
       const txtUrl = document.getElementById("txt_url");
       const btn = document.getElementById("btn_submit");
-      // const btnSave = document.getElementById("btn_save");   
       const loader = document.getElementById("loader");
       const qrImage = document.getElementById("img_qrcode");
 
-      // btnSave.addEventListener("click", async function() {
-      //   try {
-      //     let res = await fetch("http://127.0.0.1:4000/saveQRCode");
-
-      //     const data = await res.text();
-
-      //     console.log(data)
-          
-
-      //   } catch(err) {
-      //     console.log(err)
-      //   }
-      // });
-
-      
-      txtUrl.addEventListener("input", function() {
+      txtUrl.addEventListener("input", function () {
         qrImage.style.display = "none";
         qrImage.style.transition = "display 0.8s ease";
       });
@@ -62,7 +45,7 @@
           event.preventDefault();
           const url = txtUrl.value.trim();
           const secured_url = "https://" + url;
-          console.log(secured_url)
+          console.log(secured_url);
 
           if (url !== "") {
             btn.style.display = "none";
@@ -85,7 +68,6 @@
                 }
               );
 
-              
               qrImage.src = URL.createObjectURL(await response.blob());
               qrImage.style.display = "block";
               txtUrl.value = "";

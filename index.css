@@ -16,7 +16,6 @@ body {
   box-sizing: border-box;
 }
 
-
 h1 {
   font-size: 56px;
   margin: 0 0 12px 0;
@@ -24,16 +23,16 @@ h1 {
 }
 
 .input_container {
-    display: flex;
-    align-items: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 @media (max-width: 768px) {
-    .input_container {
-        flex-direction: column;
-        gap: 4px;
-    }
+  .input_container {
+    flex-direction: column;
+    gap: 4px;
+  }
 }
 
 .primary_input {
@@ -82,35 +81,37 @@ h1 {
   background-color: #551cbf;
 }
 
-
 @media (max-width: 768px) {
-    .primary_button,
-    .primary_input {
-        min-width: 300px;
-        margin-left: 0;
-    }
+  .primary_button,
+  .primary_input {
+    min-width: 300px;
+    margin-left: 0;
+  }
 }
 
 img {
-    margin-top: 20px;
-    display: none;
+  margin-top: 20px;
+  display: none;
 }
 
 .loader {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #7a33ff;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    margin-left: 12px;
-    display: none;
-    animation: spin 2s linear infinite;
-
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #7a33ff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
+  display: none;
+  animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 footer {
